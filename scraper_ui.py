@@ -24,18 +24,16 @@ def scraper_ui():
                 try:
                     with st.spinner("Descargando datos..."):
                         ingresos, balance, flujo = obtener_datos_financieros(ticker, fuente)
-                        if fuente == "Alpha Vantage":
-                            for df_temp in [ingresos, balance, flujo]:
-                                if "date" in df_temp.columns:
-                                    df_temp.drop(columns=["date"], inplace=True)
-
+                        for df_temp in [ingresos, balance, flujo]:
+                            if "date" in df_temp.columns:
+                                df_temp.drop(columns=["date"], inplace=True)
                     st.success("✅ Datos descargados")
                     st.subheader("Vista previa: Estado de Ingresos")
-                    st.dataframe(ingresos)
+                    st.dataframe(ingresos.reset_index(drop=True)) 
                     st.subheader("Vista previa: Balance General")
-                    st.dataframe(balance)
+                    st.dataframe(balance.reset_index(drop=True))
                     st.subheader("Vista previa: Flujo de Caja")
-                    st.dataframe(flujo)
+                    st.dataframe(flujo.reset_index(drop=True))
         
         
                     with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
@@ -54,4 +52,3 @@ def scraper_ui():
                     
 if __name__ == "__main__":
     scraper_ui()
-
