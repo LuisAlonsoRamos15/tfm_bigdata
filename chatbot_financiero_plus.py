@@ -14,7 +14,7 @@ import yfinance as yf
 from dotenv import load_dotenv
 from pathlib import Path
 import json
-from openai import OpenAi
+from openai import OpenAI
 import openai
 import streamlit as st
 
