@@ -24,9 +24,11 @@ def scraper_ui():
                 try:
                     with st.spinner("Descargando datos..."):
                         ingresos, balance, flujo = obtener_datos_financieros(ticker, fuente)
-                        for df_temp in [ingresos, balance, flujo]:
-                            if "date" in df_temp.columns:
-                                df_temp.drop(columns=["date"], inplace=True)
+                        if fuente == "Alpha Vantage":
+                            for df_temp in [ingresos, balance, flujo]:
+                                if "date" in df_temp.columns:
+                                    df_temp.drop(columns=["date"], inplace=True)
+
                     st.success("✅ Datos descargados")
                     st.subheader("Vista previa: Estado de Ingresos")
                     st.dataframe(ingresos)
