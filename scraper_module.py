@@ -37,8 +37,8 @@ def obtener_datos_financieros(ticker_symbol, fuente):
         estado_ingresos, _ = fd.get_income_statement_annual(ticker_symbol)
         balance_general, _ = fd.get_balance_sheet_annual(ticker_symbol)
         flujo_caja, _ = fd.get_cash_flow_annual(ticker_symbol)
-    
-        # Eliminar la columna 'date' si existe (solo para Alpha Vantage)
+        print(estado_ingresos.columns)
+        # Eliminar columna 'date' si existe
         for df in [estado_ingresos, balance_general, flujo_caja]:
             if "date" in df.columns:
                 df.drop(columns=["date"], inplace=True)
@@ -69,8 +69,9 @@ def ajustar_columnas(archivo):
 
 def guardar_en_excel(ticker_symbol, estado_ingresos, balance_general, flujo_caja, ruta_archivo):
     with pd.ExcelWriter(ruta_archivo, engine="openpyxl") as writer:
-        estado_ingresos.to_excel(writer, sheet_name="Estado de Ingresos")
-        balance_general.to_excel(writer, sheet_name="Balance General")
-        flujo_caja.to_excel(writer, sheet_name="Flujo de Caja")
+        estado_ingresos.to_excel(writer, sheet_name="Estado de Ingresos", index=False)
+        balance_general.to_excel(writer, sheet_name="Balance General", index=False)
+        flujo_caja.to_excel(writer, sheet_name="Flujo de Caja", index=False)
+
     
     ajustar_columnas(ruta_archivo)
