@@ -127,7 +127,7 @@ def generar_prompt_comparativo(texto_usuario, datos, anio):
 # Enviar a GPT para análisis
 # -----------------------------
 def conversar_con_gpt(prompt):
-    respuesta = client.chat.completions.create(
+    respuesta = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Eres un experto en análisis financiero."},
