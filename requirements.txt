@@ -6,3 +6,4 @@ numpy
 python-dotenv
 alpha_vantage
 openpyxl 
+matplotlib.pyplot
