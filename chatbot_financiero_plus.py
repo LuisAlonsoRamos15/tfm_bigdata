@@ -12,14 +12,14 @@ import joblib
 import os
 import yfinance as yf
 from dotenv import load_dotenv
-from openai import OpenAI
 from pathlib import Path
 import json
+import openai
 import streamlit as st
 
 # Configuración
-api_key = st.secrets["OPENAI_API_KEY"]
-client = OpenAI(api_key)
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = OpenAI(openai.api_key)
 
 # Cargar modelo y dataset
 modelo = joblib.load("modelo_clasificador.pkl")
