@@ -20,7 +20,7 @@ import streamlit as st
 
 # Configuración
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-client = OpenAI(openai.api_key)
+
 
 # Cargar modelo y dataset
 modelo = joblib.load("modelo_clasificador.pkl")
@@ -38,7 +38,7 @@ def extraer_tickers_y_anio(texto_usuario):
         f"Ejemplo de pregunta: {texto_usuario}"
     )
 
-    respuesta = client.chat.completions.create(
+    respuesta = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Eres un asistente financiero."},
