@@ -33,16 +33,15 @@ def obtener_datos_financieros(ticker_symbol, fuente):
     if not validar_ticker(ticker_symbol, fuente):
         raise ValueError(f"Ticker '{ticker_symbol}' no válido o sin datos disponibles en {fuente}")
 
-if fuente == "Alpha Vantage":
-    estado_ingresos, _ = fd.get_income_statement_annual(ticker_symbol)
-    balance_general, _ = fd.get_balance_sheet_annual(ticker_symbol)
-    flujo_caja, _ = fd.get_cash_flow_annual(ticker_symbol)
-
-    # Eliminar la columna 'date' si existe (solo para Alpha Vantage)
-    for df in [estado_ingresos, balance_general, flujo_caja]:
-        if "date" in df.columns:
-            df.drop(columns=["date"], inplace=True)
-
+    if fuente == "Alpha Vantage":
+        estado_ingresos, _ = fd.get_income_statement_annual(ticker_symbol)
+        balance_general, _ = fd.get_balance_sheet_annual(ticker_symbol)
+        flujo_caja, _ = fd.get_cash_flow_annual(ticker_symbol)
+    
+        # Eliminar la columna 'date' si existe (solo para Alpha Vantage)
+        for df in [estado_ingresos, balance_general, flujo_caja]:
+            if "date" in df.columns:
+                df.drop(columns=["date"], inplace=True)
 
     elif fuente == "Yahoo Finance":
         empresa = yf.Ticker(ticker_symbol)
