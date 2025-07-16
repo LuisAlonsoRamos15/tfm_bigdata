@@ -115,10 +115,10 @@ def generar_prompt_comparativo(texto_usuario, datos, anio):
 
     prompt = (
         f"{contexto}\n"
-        f"🧾 Pregunta del usuario: {texto_usuario}\n"
-        f"📅 Año solicitado: {anio}\n\n"
-        f"📊 Datos financieros disponibles:\n{datos.to_string(index=False)}\n\n"
-        "💡 Escribe una comparación profesional entre las empresas listadas."
+        f"Pregunta del usuario: {texto_usuario}\n"
+        f"Año solicitado: {anio}\n\n"
+        f"Datos financieros disponibles:\n{datos.to_string(index=False)}\n\n"
+        "Escribe una comparación profesional entre las empresas listadas."
     )
 
     return prompt
