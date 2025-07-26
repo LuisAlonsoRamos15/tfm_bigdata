@@ -19,9 +19,6 @@ def proyeccion_financiera_ui():
 
     if empresa:
         # Obtener precio actual con yfinance
-        st.subheader("Paso 2: Precio actual de mercado")
-        st.info("Esto puede tardar unos segundos...")
-
         def obtener_precio_actual(ticker):
             try:
                 return yf.Ticker(ticker).info.get("currentPrice")
@@ -36,7 +33,8 @@ def proyeccion_financiera_ui():
         precio_actual = fila["Precio_actual"]
 
         # Parámetros de usuario
-        st.subheader("Paso 3: Parámetros de proyección")
+        st.subheader("Paso 2: Parámetros de proyección")
+        st.info("Esto puede tardar unos segundos...")
         col1, col2, col3 = st.columns(3)
         with col1:
             g = st.slider("Tasa de crecimiento EPS anual (%)", 0.0, 30.0, 10.0) / 100
