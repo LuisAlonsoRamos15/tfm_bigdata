@@ -15,7 +15,6 @@ def proyeccion_financiera_ui():
 
     # Selección de empresa
     st.subheader("Paso 1: Selecciona una empresa del dataset")
-    st.info("Esto puede tardar unos segundos...")
     empresa = st.selectbox("Ticker disponible", df_eps["Ticker"].unique())
 
     if empresa:
