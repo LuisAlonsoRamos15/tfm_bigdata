@@ -15,6 +15,7 @@ def proyeccion_financiera_ui():
 
     # Selección de empresa
     st.subheader("Paso 1: Selecciona una empresa del dataset")
+    st.info("Esto puede tardar unos segundos...")
     empresa = st.selectbox("Ticker disponible", df_eps["Ticker"].unique())
 
     if empresa:
@@ -34,7 +35,6 @@ def proyeccion_financiera_ui():
 
         # Parámetros de usuario
         st.subheader("Paso 2: Parámetros de proyección")
-        st.info("Esto puede tardar unos segundos...")
         col1, col2, col3 = st.columns(3)
         with col1:
             g = st.slider("Tasa de crecimiento EPS anual (%)", 0.0, 30.0, 10.0) / 100
