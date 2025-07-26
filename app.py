@@ -12,6 +12,7 @@ from scraper_ui import scraper_ui
 from eda_ui import eda_ui
 from chatbot_ui import chatbot_ui
 from modelo_ui import modelo_ui
+from proyeccion_ui import proyeccion_financiera_ui 
 
 st.set_page_config(page_title="TFM - Análisis Financiero con IA", layout="wide")
 
@@ -21,6 +22,7 @@ opcion = st.sidebar.radio("Selecciona una sección:", [
     "📥 Scraper",
     "📊 Análisis EDA",
     "🤖 Chatbot",
+    "📈 Proyección",
     "📂 Modelo IA"
 ])
 
@@ -33,6 +35,9 @@ elif opcion == "📊 Análisis EDA":
 
 elif opcion == "🤖 Chatbot":
     chatbot_ui()
+
+elif opcion == "📈 Proyección":
+    proyeccion_financiera_ui()
 
 elif opcion == "📂 Modelo IA":
     modelo_ui()
